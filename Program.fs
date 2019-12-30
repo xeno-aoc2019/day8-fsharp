@@ -8,8 +8,13 @@ open day8_fsharp.InputService
 open day8_fsharp.Layer
 open day8_fsharp.LayerService
 
-
-
+let solve1 (layers:list<Layer>) =
+    let zeroPixelsForFirstLayer = countPixels layers.Head 0
+    let layerTask1 = findLeastZeroLayer (zeroPixelsForFirstLayer, layers.Head, layers.Tail)
+    let ones = countPixels layerTask1 1
+    let twos = countPixels layerTask1 2
+    let answer = ones * twos
+    answer
 
 [<EntryPoint>]
 let main argv =
@@ -17,15 +22,12 @@ let main argv =
     let x = new Stopwatch()
     let layers = toLayers pixels
     x.Start()
-    printfn "Read %A#" pixels
-    printfn "Size: %i" (Seq.length pixels)
-    printfn "Split: %A" layers
-    let zeroPixelsForFirstLayer = countPixels layers.Head 0
-    let layerTask1 = findLeastZeroLayer (zeroPixelsForFirstLayer, layers.Head, layers.Tail)
-    let ones = countPixels layerTask1 1
-    let twos = countPixels layerTask1 2
-    let answer = ones * twos 
-    printfn "Task 1: layer = %A answer=%i" layerTask1 answer 
+    // printfn "Read %A#" pixels
+    // printfn "Size: %i" (Seq.length pixels)
+    // printfn "Split: %A" layers
+ 
+    let answer1 = solve1 layers 
+    printfn "Task 1: answer=%i"  answer1
     x.Stop()
     printfn "%O" x.Elapsed
     0 // return an integer exit code
