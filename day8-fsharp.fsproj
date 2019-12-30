@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Layer.fs" />
+        <Compile Include="LayerService.fs" />
         <Compile Include="InputService.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
